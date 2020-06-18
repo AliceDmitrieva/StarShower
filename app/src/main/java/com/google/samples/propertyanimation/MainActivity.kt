@@ -88,6 +88,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun translater() {
+        val animator = ObjectAnimator.ofFloat(star, View.TRANSLATION_X,
+            200f)
+        animator.repeatCount = 1
+        animator.repeatMode = ObjectAnimator.REVERSE
+        disableViewDuringAnimation(translateButton, animator)
+        animator.start()
     }
 
     private fun scaler() {
@@ -102,4 +108,16 @@ class MainActivity : AppCompatActivity() {
     private fun shower() {
     }
 
+    private fun disableViewDuringAnimation(view: View,
+                                           animator: ObjectAnimator) {
+        animator.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationStart(animation: Animator?) {
+                view.isEnabled = false
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                view.isEnabled = true
+            }
+        })
+    }
 }
