@@ -111,8 +111,15 @@ class MainActivity : AppCompatActivity() {
         animator.start()
     }
 
-    private fun colorizer() {
-    }
+   private fun colorizer() {
+    var animator = ObjectAnimator.ofArgb(star.parent,
+        "backgroundColor", Color.BLACK, Color.RED)
+    animator.setDuration(500)
+    animator.repeatCount = 1
+    animator.repeatMode = ObjectAnimator.REVERSE
+    animator.disableViewDuringAnimation(colorizeButton)
+    animator.start()
+}
 
     private fun shower() {
     }
